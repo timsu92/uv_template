@@ -1,0 +1,29 @@
+services:
+  app:
+    environment:
+      - PROJECT_PATH=/project/poetry_template
+      # prevents python creating .pyc files
+      # - PYTHONDONTWRITEBYTECODE=1
+      # do not ask any interactive question
+      # - POETRY_NO_INTERACTION=1
+      - TZ=Asia/Taipei
+    build:
+      context: ..
+      target: dev
+      # secrets:
+      #   - GIT_AUTH_TOKEN
+      args:
+        - PROJECT_PATH=/project/poetry_template
+        - TZ=Asia/Taipei
+    volumes:
+      - ..:/project/poetry_template:rw,cached
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           capabilities: [gpu]
+
+# secrets:
+#   GIT_AUTH_TOKEN:
+#     environment: GIT_AUTH_TOKEN

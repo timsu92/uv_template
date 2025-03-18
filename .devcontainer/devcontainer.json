@@ -1,0 +1,37 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+{
+  "name": "poetry template",
+
+  // ## Base image ##
+  // More info: https://containers.dev/guide/dockerfile
+  // "image": "mcr.microsoft.com/devcontainers/base:jammy",
+  // "build": {
+  // 	"dockerfile": "Dockerfile"
+  // },
+  "dockerComposeFile": "docker-compose-dev.yml",
+  "service": "app",
+  // "runServices": [],
+  "overrideCommand": false,
+
+  // ## Environment ##
+  "workspaceFolder": "/project/poetry_template",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+
+  // ## Custom commands in different stages ##
+  // "onCreateCommand": "",
+  "postCreateCommand": "poetry install --no-root",
+  // "postStartCommand": "",
+  // "postAttachCommand": "",
+
+  // ## Tool-specific properties ##
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.isort"
+      ]
+    }
+  }
+}
