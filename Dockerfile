@@ -83,7 +83,7 @@ RUN --mount=type=cache,dst=${UV_CACHE_DIR},uid=1000,gid=1000 \
     # --mount=type=secret,id=GIT_AUTH_TOKEN,env=GIT_AUTH_TOKEN \
     # poetry config repositories.REPO_NAME https://github.com/SOME_ORG/SOME_REPO.git && \
     # poetry config http-basic.REPO_NAME username ${GIT_AUTH_TOKEN} && \
-    uv sync --frozen --no-install-project --no-dev
+    uv sync --frozen --no-install-project --no-install-workspace --no-dev
     # poetry config --unset http-basic.REPO_NAME
 
 COPY --chown=${NONROOT_USERNAME}:${NONROOT_USERNAME} . .
