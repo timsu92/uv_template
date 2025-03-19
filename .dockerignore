@@ -205,7 +205,26 @@ pip-selfcheck.json
 ### Docker ###
 Dockerfile
 .dockerignore
+docker-compose*.yml
 
 ### Git ###
 .git
 .gitmodules
+.gitignore
+.gitattributes
+.gitconfig
+.gitkeep
+
+### GitHub ###
+/.github
+
+### VSCode ###
+/.vscode
+/.devcontainer
+
+### docs ###
+docs/
+README.md
+CHANGELOG.md
+readme.md
+changelog.md
