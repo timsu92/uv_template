@@ -1,0 +1,13 @@
+version = 1
+revision = 1
+requires-python = ">=3.10"
+
+[[package]]
+name = "uv-template"
+version = "0.1.0"
+source = { virtual = "." }
+
+[package.metadata]
+
+[package.metadata.requires-dev]
+dev = []

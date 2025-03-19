@@ -99,8 +99,11 @@ RUN --mount=type=cache,dst=${UV_CACHE_DIR},uid=1000,gid=1000 \
 
 FROM builder-base AS dev
 ARG DEBIAN_FRONTEND=noninteractive
+    # uv
+ENV UV_CACHE_DIR="/root/.cache/uv"
 ARG TZ
 ENV TZ=${TZ}
+
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update \
@@ -111,6 +114,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         vim wget curl
 # set timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR ${PROJECT_PATH}
 

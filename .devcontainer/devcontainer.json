@@ -1,6 +1,6 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 {
-  "name": "poetry template",
+  "name": "uv template",
 
   // ## Base image ##
   // More info: https://containers.dev/guide/dockerfile
@@ -14,13 +14,13 @@
   "overrideCommand": false,
 
   // ## Environment ##
-  "workspaceFolder": "/project/poetry_template",
+  "workspaceFolder": "/project/uv_template",
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
 
   // ## Custom commands in different stages ##
   // "onCreateCommand": "",
-  "postCreateCommand": "poetry install --no-root",
+  "postCreateCommand": "uv sync --frozen",
   // "postStartCommand": "",
   // "postAttachCommand": "",
 
