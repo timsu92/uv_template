@@ -31,11 +31,9 @@ jobs:
           enable-cache: true
 
       - name: Export requirements.txt
-        if: env.changes != ''
         run: uv export --format requirements-txt
 
       - name: Commit and push changes
-        if: env.changes != ''
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
