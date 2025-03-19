@@ -21,30 +21,6 @@ ENV PATH="$VENV_PATH/bin:$PATH"
 
 ################################################################################
 
-# `builder-base` stage is used to build deps + create our virtual environment
-FROM python-base AS builder-base
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update \
-    && apt-get install --no-install-recommends -y \
-        # deps for installing poetry
-        curl \
-        # deps for building python deps
-        build-essential \
-        # useful tools
-        git
-    # && apt-get clean \
-    # && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
-
-# copy project requirement files here to ensure they will be cached.
-WORKDIR ${PROJECT_PATH}
-
-################################################################################
-
-FROM builder-base AS prod-prepare
-
-################################################################################
-
 FROM python-base AS prod
 ARG DEBIAN_FRONTEND=noninteractive
 ARG NONROOT_USERNAME
@@ -97,7 +73,7 @@ RUN --mount=type=cache,dst=${UV_CACHE_DIR},uid=1000,gid=1000 \
 
 ################################################################################
 
-FROM builder-base AS dev
+FROM python-base AS dev
 ARG DEBIAN_FRONTEND=noninteractive
     # uv
 ENV UV_CACHE_DIR="/root/.cache/uv"
@@ -110,8 +86,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     && apt-get install --no-install-recommends -y \
         # timezone
         tzdata \
+        # deps for building python deps
+        build-essential \
         # useful tools
-        vim wget curl
+        git vim wget curl
 # set timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 
