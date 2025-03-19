@@ -31,7 +31,7 @@ jobs:
           enable-cache: true
 
       - name: Export requirements.txt
-        run: uv export --format requirements-txt
+        run: uv export --format requirements-txt > requirements.txt
 
       - name: Commit and push changes
         run: |
