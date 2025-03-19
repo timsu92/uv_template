@@ -1,11 +1,7 @@
 services:
   app:
     environment:
-      - PROJECT_PATH=/project/poetry_template
-      # prevents python creating .pyc files
-      - PYTHONDONTWRITEBYTECODE=1
-      # do not ask any interactive question
-      - POETRY_NO_INTERACTION=1
+      - PROJECT_PATH=/project/uv_template
       - TZ=Asia/Taipei
     build:
       context: .
@@ -13,7 +9,7 @@ services:
       # secrets:
       #   - GIT_AUTH_TOKEN
       args:
-        - PROJECT_PATH=/project/poetry_template
+        - PROJECT_PATH=/project/uv_template
         - TZ=Asia/Taipei
     # deploy:
     #   resources:
