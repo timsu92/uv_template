@@ -29,7 +29,7 @@ Before using this template, you may want to change the project path in these fil
 - [pyproject.toml](./pyproject.toml#L9)
 
 ...and you may want to change uv's version:
-- [.github/workflows/requirements.txt.yml line 30](./.github/workflows/requirements.txt.yml#L30)
+- [.github/workflows/requirements.txt.yml line 33](./.github/workflows/requirements.txt.yml#L30)
 
 ## Usage
 
