@@ -18,6 +18,9 @@ Before using this template, you may want to change the project path in these fil
 - [docker-compose.yml line 12](./docker-compose.yml#L12)
 - [.devcontainer/docker-compose-dev.yml line 4](./.devcontainer/docker-compose-dev.yml#L4)
 - [.devcontainer/docker-compose-dev.yml line 12](./.devcontainer/docker-compose-dev.yml#L12)
+- [.devcontainer/docker-compose-dev.yml line 15](./.devcontainer/docker-compose-dev.yml#L15)
+- [.devcontainer/devcontainer.json line 3](./.devcontainer/devcontainer.json#L3)
+- [.devcontainer/devcontainer.json line 17](./.devcontainer/devcontainer.json#L17)
 
 ...and you may want to change the project name:
 - [pyproject.toml line 2](./pyproject.toml#L2)
