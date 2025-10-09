@@ -1,10 +1,10 @@
 # Tempelate for a Python uv Project
 
-This is a template for a Python uv project. It is configured to use cuda 12.2.2, python >=3.10, and ubuntu 22.04. Coding with devcontainers is supported.
+This is a template for a Python uv project. It is configured to use cuda 12.2.2, python >=3.12, and ubuntu 22.04. Coding with devcontainers is supported.
 
 ## Features
 
-- Python >=3.10
+- Python >=3.12
 - uv latest
 - CUDA 12.2.2
 - Ubuntu 22.04
