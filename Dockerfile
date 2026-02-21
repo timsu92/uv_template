@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1.17-labs
-ARG BASE_IMAGE=nvidia/cuda:12.2.2-base-ubuntu22.04
-# ARG BASE_IMAGE=ubuntu:noble
+ARG BASE_IMAGE=ubuntu:noble
+# ARG BASE_IMAGE=nvidia/cuda:12.2.2-base-ubuntu22.04
 
 FROM $BASE_IMAGE AS python-base
 ARG PROJECT_PATH
-ARG NONROOT_USERNAME=nonroot
+ARG NONROOT_USERNAME=ubuntu
 
 # python
 ENV PYTHONUNBUFFERED=1 \
@@ -44,7 +44,7 @@ ENV UV_LINK_MODE=copy \
         # && apt update \
         # && apt install gh -y
 
-RUN useradd -ms /bin/bash ${NONROOT_USERNAME} --user-group
+# RUN useradd -ms /bin/bash ${NONROOT_USERNAME} --user-group
 USER ${NONROOT_USERNAME}
 WORKDIR ${PROJECT_PATH}
 
@@ -92,7 +92,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # set timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 
-RUN useradd -ms /bin/bash ${NONROOT_USERNAME} --user-group
+# RUN useradd -ms /bin/bash ${NONROOT_USERNAME} --user-group
 USER ${NONROOT_USERNAME}
 WORKDIR ${PROJECT_PATH}
 
