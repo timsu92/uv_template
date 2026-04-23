@@ -1,6 +1,6 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 {
-  "name": "uv template",
+  "name": "${localWorkspaceFolderBasename}",
 
   "dockerComposeFile": "docker-compose-dev.yml",
   // The service vscode connects to
@@ -9,7 +9,7 @@
   "overrideCommand": true,
 
   // ## Environment ##
-  "workspaceFolder": "/project/uv_template",
+  "workspaceFolder": "/project",
   // Variables used in all of the container. Rebuild is required if you want to modify
   "containerEnv": {
     "GIT_EDITOR": "vim",

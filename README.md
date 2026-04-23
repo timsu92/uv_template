@@ -13,15 +13,8 @@ This is a template for a Python uv project. It is configured to use cuda 12.2.2,
 
 ## Changes before using
 
-Before using this template, you may want to change the project path in these files:
-- [docker-compose.yml line 4](./docker-compose.yml#L4)
-- [docker-compose.yml line 17](./docker-compose.yml#L17)
-- [.devcontainer/docker-compose-dev.yml line 4](./.devcontainer/docker-compose-dev.yml#L4)
-- [.devcontainer/docker-compose-dev.yml line 17](./.devcontainer/docker-compose-dev.yml#L17)
-- [.devcontainer/docker-compose-dev.yml line 20](./.devcontainer/docker-compose-dev.yml#L20)
-- [.devcontainer/devcontainer.json line 12](./.devcontainer/devcontainer.json#L12)
-
-...and you may want to change the project name:
+Before using this template, you may want to change the project name:
+- [.devcontainer/devcontainer.json line 3](./.devcontainer/devcontainer.json#L3)
 - [pyproject.toml line 2](./pyproject.toml#L2)
 
 ...and you may want to change the Python version:
