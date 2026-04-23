@@ -3,7 +3,6 @@ ARG BASE_IMAGE=ubuntu:noble
 # ARG BASE_IMAGE=nvidia/cuda:12.2.2-base-ubuntu22.04
 
 FROM $BASE_IMAGE AS python-base
-ARG PROJECT_PATH
 ARG NONROOT_USERNAME=ubuntu
 
 # python
@@ -12,14 +11,7 @@ ENV PYTHONUNBUFFERED=1 \
     # pip
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
-    PIP_DEFAULT_TIMEOUT=100 \
-    \
-    # paths
-    # this is where our requirements + virtual environment will live
-    VENV_PATH="${PROJECT_PATH}/.venv"
-
-# prepend venv to path
-ENV PATH="$VENV_PATH/bin:$PATH"
+    PIP_DEFAULT_TIMEOUT=100
 
 ################################################################################
 
@@ -46,12 +38,18 @@ ENV UV_LINK_MODE=copy \
 
 # RUN useradd -ms /bin/bash ${NONROOT_USERNAME} --user-group
 USER ${NONROOT_USERNAME}
-WORKDIR ${PROJECT_PATH}
 
 # # login to GitHub CLI
 # RUN --mount=type=secret,id=GIT_AUTH_TOKEN,required=true,uid=1000,gid=1000 \
     # gh auth login --with-token < /run/secrets/GIT_AUTH_TOKEN
 # RUN gh auth setup-git
+
+ARG PROJECT_PATH
+# python
+ENV VENV_PATH="${PROJECT_PATH}/.venv"
+# prepend venv to path
+ENV PATH="$VENV_PATH/bin:$PATH"
+WORKDIR ${PROJECT_PATH}
 
 # # install runtime deps - without project itself
     # # uv download cache
@@ -125,6 +123,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
+ARG PROJECT_PATH
 WORKDIR ${PROJECT_PATH}
+
+# python
+ENV VENV_PATH="${PROJECT_PATH}/.venv"
+# prepend venv to path
+ENV PATH="$VENV_PATH/bin:$PATH"
 
 CMD ["/bin/sh", "-c", "echo \"Container started\"; trap \"echo Container stopped; exit 0\" 15; exec \"$@\"; while sleep 1 & wait $!; do :; done"]
